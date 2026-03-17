@@ -44,48 +44,48 @@ You will need the following installed on your computer:
 - [Python](https://www.python.org/) (v3.9 or higher recommended)
 
 ### 1. Clone the repository
-\`\`\`bash
+```bash
 git clone https://github.com/YourUsername/YourRepositoryName.git
 cd YourRepositoryName
-\`\`\`
+```
 
 ### 2. Backend Setup
 
 1. Open a terminal and navigate to the project root directory.
 2. Create and activate a virtual environment (optional but recommended):
-   \`\`\`bash
+   ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   \`\`\`
+   ```
 3. Install the required Python packages:
-   \`\`\`bash
+   ```bash
    pip install fastapi uvicorn aiohttp aiocache pydantic pydantic-settings
-   \`\`\`
+   ```
 4. Create a `.env` file in the root directory (where `backend` folder is located) and add your API keys:
-   \`\`\`env
+   ```env
    CMC_API_KEY=your_coinmarketcap_api_key_here
    ER_API_KEY=your_exchangerate_api_key_here
-   \`\`\`
+   ```
 5. Start the FastAPI server:
-   \`\`\`bash
+   ```bash
    uvicorn backend.src.main:app --reload
-   \`\`\`
+   ```
    *The backend will be running at `http://localhost:8000`.*
 
 ### 3. Frontend Setup
 
 1. Open a new terminal window and navigate to the `frontend` directory:
-   \`\`\`bash
+   ```bash
    cd frontend
-   \`\`\`
+   ```
 2. Install the Node dependencies:
-   \`\`\`bash
+   ```bash
    npm install --legacy-peer-deps
-   \`\`\`
+   ```
 3. Start the Vite development server:
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
    *The frontend will be running at `http://localhost:5173`.*
 
 ---
