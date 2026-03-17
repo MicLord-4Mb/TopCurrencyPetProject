@@ -1,4 +1,6 @@
 from contextlib import asynccontextmanager
+
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,7 +14,6 @@ origins = [
 ]
 
 
-# ✅ Исправлено: try/finally гарантирует закрытие сессий даже при ошибке
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.cmc_client = CMCHTTPClient(
@@ -26,14 +27,12 @@ async def lifespan(app: FastAPI):
     try:
         yield
     finally:
-        # Закрываем HTTP сессии при завершении приложения
         await app.state.cmc_client._session.close()
         await app.state.er_client._session.close()
 
 
 app = FastAPI(lifespan=lifespan)
 
-# ✅ Исправлено: middleware регистрируется ДО роутеров
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -43,3 +42,7 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+# use terminal to run: uvicorn backend.src.main:app --reload
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
