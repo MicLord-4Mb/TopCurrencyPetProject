@@ -19,7 +19,7 @@ function CryptoCurrencyCard({ crypto }) {
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+        maximumFractionDigits: price < 1 ? 6 : 2
     });
 
     const formattedMarketCap = marketCap.toLocaleString('en-US', {
