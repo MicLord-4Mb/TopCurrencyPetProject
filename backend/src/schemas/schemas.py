@@ -16,7 +16,7 @@ class Quote(BaseModel):
 
 
 class CryptoListItem(BaseModel):
-    """Элемент списка криптовалют (для меню)."""
+    """Cryptocurrency list item (for menus)."""
     id: int
     name: str
     symbol: str
@@ -25,7 +25,7 @@ class CryptoListItem(BaseModel):
 
 
 class CryptoDetail(CryptoListItem):
-    """Расширенные данные криптовалюты (для карточки)."""
+    """Extended cryptocurrency data (for detail cards)."""
     slug: str | None = None
 
 
@@ -34,15 +34,14 @@ class CryptoDetail(CryptoListItem):
 # ---------------------------------------------------------------------------
 
 class ExchangeRatesResponse(BaseModel):
-    """Ответ ExchangeRate API."""
+    """ExchangeRate API response."""
     result: str
     base_code: str
-    # Словарь: код валюты → курс к USD
+    # Dict: currency code → exchange rate to USD
     conversion_rates: dict[str, float]
 
 
 class CurrencyCode(BaseModel):
-    """Пара: код валюты → полное название."""
+    """Pair: currency code → full name."""
     code: str
     name: str
-

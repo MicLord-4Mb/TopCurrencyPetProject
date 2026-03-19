@@ -16,9 +16,9 @@ class CMCHTTPClient(HTTPClient):
     def __init__(self, base_url: str, api_key: str):
         super().__init__(base_url, headers={'X-CMC_PRO_API_KEY': api_key})
 
-    # ✅ Исправлено: aiocache вместо alru_cache
-    # alru_cache на методах экземпляра держит ссылку на self → утечка памяти
-    # aiocache кэширует по аргументам без привязки к экземпляру
+    # ✅ Fixed: using aiocache instead of alru_cache
+    # alru_cache on instance methods holds a reference to 'self' → memory leak
+    # aiocache caches by arguments without being bound to the instance
     @cached(ttl=LISTINGS_TTL)
     async def get_listings(self):
         async with self._session.get('/v1/cryptocurrency/listings/latest') as response:

@@ -9,12 +9,11 @@ router = APIRouter(
 )
 
 
-# ✅ response_model проверяет ответ и генерирует OpenAPI документацию
 @router.get("/crypto", response_model=list[CryptoListItem])
 async def get_cryptocurrencies(
         cmc_client: CMCHTTPClient = Depends(get_cmc_client)
 ):
-    """Список топ криптовалют по рыночной капитализации."""
+    """List of top cryptocurrencies by market capitalization."""
     try:
         return await cmc_client.get_listings()
     except Exception as e:
@@ -26,7 +25,7 @@ async def get_cryptocurrency(
         currency_id: int,
         cmc_client: CMCHTTPClient = Depends(get_cmc_client)
 ):
-    """Детальная информация и котировка конкретной криптовалюты."""
+    """Detailed information and price quote for a specific cryptocurrency."""
     try:
         return await cmc_client.get_currency(currency_id)
     except Exception as e:
@@ -37,7 +36,7 @@ async def get_cryptocurrency(
 async def get_exchange(
         er_client: ERHTTPClient = Depends(get_er_client)
 ):
-    """Курсы валют относительно USD."""
+    """Exchange rates relative to USD."""
     try:
         return await er_client.get_latest()
     except Exception as e:
@@ -48,7 +47,7 @@ async def get_exchange(
 async def get_codes(
         er_client: ERHTTPClient = Depends(get_er_client)
 ):
-    """Список поддерживаемых валютных кодов."""
+    """List of supported currency codes."""
     try:
         raw = await er_client.get_cur_sup()
         # raw = [["USD", "United States Dollar"], ...]
