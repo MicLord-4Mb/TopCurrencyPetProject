@@ -20,6 +20,7 @@ class Settings(BaseSettings):
     environment: str = "development"
     debug: bool = False
     cache_ttl: int = 300
+    vite_api_base_url: str = ""
 
     model_config = SettingsConfigDict(env_file='.env')
 
