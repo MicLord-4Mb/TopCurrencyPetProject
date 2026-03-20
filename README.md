@@ -45,8 +45,8 @@ You will need the following installed on your computer:
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YourUsername/YourRepositoryName.git
-cd YourRepositoryName
+git clone https://github.com/MicLord-4Mb/TopCurrencyPetProject
+cd TopCurrencyPetProject
 ```
 
 ### 2. Backend Setup
